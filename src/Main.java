@@ -7,13 +7,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         while (running) {
-            System.out.println("==============-STUDENT MANAGEMENT SYSTEM-=============");
+            System.out.println("===============-STUDENT MANAGEMENT SYSTEM-===============");
             System.out.println();
             System.out.println("1. Add Student ");
             System.out.println("2. Display Students ");
             System.out.println("3. Search Student ");
             System.out.println("4. Update Student ");
-            System.out.println("5. Exit ");
+            System.out.println("5. Delete Student ");
+            System.out.println("6. Exit ");
+            System.out.println();
+            System.out.println("=========================================================");
             System.out.print("Enter Your Choice: ");
             int choice = scanner.nextInt();
 
@@ -61,9 +64,17 @@ public class Main {
 
                     break;
                 case 5:
+                    System.out.println("Enter Student RollNumber: ");
+                    int rollNumb = scanner.nextInt();
+                    studentManager.deleteStudent(rollNumb);
+                    break;
+                   
+
+                case 6:
                     System.out.println("Thank you! Have a great day :) ");
                     running = false;
                     break;
+
 
                 default:
                     System.out.println("Invalid choice! Please try again.");
@@ -74,4 +85,3 @@ public class Main {
         scanner.close();
     }
 }
-.

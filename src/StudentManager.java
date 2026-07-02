@@ -131,7 +131,7 @@ public class StudentManager {
                     int newSemester = scanner.nextInt();
                     scanner.nextLine();
                     student.semester = newSemester;
-                     System.out.println("Semester Updated Successfully!" +
+                    System.out.println("Semester Updated Successfully!" +
                             " Name: " + student.name +
                             ", Roll no.: " + student.rollNumber +
                             ", Age: " + student.age +
@@ -145,7 +145,7 @@ public class StudentManager {
                     scanner.nextLine();
                     String newPhone = scanner.nextLine();
                     student.phoneNumber = newPhone;
-                     System.out.println("Phone no. Updated Successfully!" +
+                    System.out.println("Phone no. Updated Successfully!" +
                             " Name: " + student.name +
                             ", Roll no.: " + student.rollNumber +
                             ", Age: " + student.age +
@@ -159,7 +159,7 @@ public class StudentManager {
                     scanner.nextLine();
                     String newEmail = scanner.nextLine();
                     student.email = newEmail;
-                     System.out.println("Email Updated Successfully!" +
+                    System.out.println("Email Updated Successfully!" +
                             " Name: " + student.name +
                             ", Roll no.: " + student.rollNumber +
                             ", Age: " + student.age +
@@ -176,4 +176,19 @@ public class StudentManager {
         }
     }
 
+    public void deleteStudent(int rollNumber) {
+        for (int i = 0; i < studentCount; i++) {
+            if (students[i].rollNumber == rollNumber) {
+                for (int j = i; j < studentCount - 1; j++) {
+                    students[j] = students[j + 1];
+                }
+                studentCount--;
+                students[studentCount] = null;
+                System.out.println("Student deleted successfully!");
+                return;
+
+            }
+        }
+        System.out.println("Student not found.");
+    }
 }
