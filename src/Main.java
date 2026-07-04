@@ -32,13 +32,13 @@ public class Main {
                     int rollNumber = scanner.nextInt();
                     Student student = studentManager.searchStudent(rollNumber);
                     if (student != null) {
-                        System.out.println("Name: " + student.name +
-                                ", Roll no.: " + student.rollNumber +
-                                ", Age: " + student.age +
-                                ", Branch: " + student.branch +
-                                ", Phone no.: " + student.phoneNumber +
-                                ", Semester: " + student.semester +
-                                ", Email: " + student.email);
+                        System.out.println("Name: " + student.getName() +
+                                ", Roll no.: " + student.getRoll() +
+                                ", Age: " + student.getAge() +
+                                ", Branch: " + student.getBranch() +
+                                ", Phone no.: " + student.getPhone() +
+                                ", Semester: " + student.getSem() +
+                                ", Email: " + student.getEmail());
                     } else {
                         System.out.println("Student not found.");
                     }
@@ -49,13 +49,13 @@ public class Main {
                     int rollNum = scanner.nextInt();
                     Student student2 = studentManager.searchStudent(rollNum);
                     if (student2 != null) {
-                        System.out.println("Name: " + student2.name +
-                                ", Roll no.: " + student2.rollNumber +
-                                ", Age: " + student2.age +
-                                ", Branch: " + student2.branch +
-                                ", Phone no.: " + student2.phoneNumber +
-                                ", Semester: " + student2.semester +
-                                ", Email: " + student2.email);
+                        System.out.println("Name: " + student2.getName() +
+                                ", Roll no.: " + student2.getRoll() +
+                                ", Age: " + student2.getAge() +
+                                ", Branch: " + student2.getBranch() +
+                                ", Phone no.: " + student2.getPhone() +
+                                ", Semester: " + student2.getSem() +
+                                ", Email: " + student2.getEmail());
                                 studentManager.updateStudent(rollNum);
                     }
                     else{

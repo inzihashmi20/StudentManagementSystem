@@ -5,7 +5,7 @@ public class StudentManager {
 
     Student[] students = new Student[100];
     int studentCount = 0;
-
+    
     public void addStudent() {
         System.out.println("Enter Name: ");
         String name = scanner.nextLine();
@@ -24,14 +24,8 @@ public class StudentManager {
         System.out.println("Enter email: ");
         String email = scanner.nextLine();
 
-        Student student = new Student();
-        student.name = name;
-        student.rollNumber = rollNumber;
-        student.age = age;
-        student.branch = branch;
-        student.semester = semester;
-        student.phoneNumber = phoneNumber;
-        student.email = email;
+        Student student = new Student(name, rollNumber, age, branch, semester, phoneNumber, email);
+       
 
         students[studentCount] = student;
         studentCount++;
@@ -43,16 +37,18 @@ public class StudentManager {
             System.out.println("No students found.");
             return;
         }
+
         for (int i = 0; i < studentCount; i++) {
             Student student = students[i];
 
-            System.out.print("Name: " + student.name);
-            System.out.print(", Roll no.: " + student.rollNumber);
-            System.out.print(", Age: " + student.age);
-            System.out.print(", Branch: " + student.branch);
-            System.out.print(", Semester: " + student.semester);
-            System.out.print(", Phone no.: " + student.phoneNumber);
-            System.out.print(", Email: " + student.email);
+            System.out.print("Name: " + student.getName());
+            System.out.print(", Roll no.: " + student.getRoll());
+            System.out.print(", Age: " + student.getAge());
+            System.out.print(", Branch: " + student.getBranch());
+            System.out.print(", Semester: " + student.getSem());
+            System.out.print(", Phone no.: " + student.getPhone());
+            System.out.print(", Email: " + student.getEmail());
+            System.out.println();
             System.out.println("-------------------------");
             System.out.println();
         }
@@ -61,7 +57,7 @@ public class StudentManager {
 
     public Student searchStudent(int rollNumber) {
         for (int i = 0; i < studentCount; i++) {
-            if (students[i].rollNumber == rollNumber) {
+            if (students[i].getRoll() == rollNumber) {
                 return students[i];
             }
         }
@@ -87,85 +83,85 @@ public class StudentManager {
                     System.out.print("Enter name to update: ");
                     scanner.nextLine();
                     String newName = scanner.nextLine();
-                    student.name = newName;
+                    student.setName(newName);
                     System.out.println("");
                     System.out.println("Name Updated Successfully!" +
                             " Name: " + newName +
-                            ", Roll no.: " + student.rollNumber +
-                            ", Age: " + student.age +
-                            ", Branch: " + student.branch +
-                            ", Phone no.: " + student.phoneNumber +
-                            ", Semester: " + student.semester +
-                            ", Email: " + student.email);
+                            ", Roll no.: " + student.getRoll() +
+                            ", Age: " + student.getAge() +
+                            ", Branch: " + student.getBranch() +
+                            ", Phone no.: " + student.getPhone() +
+                            ", Semester: " + student.getSem() +
+                            ", Email: " + student.getEmail());
                     break;
 
                 case 2:
                     System.out.println("Enter Age to update: ");
                     int newAge = scanner.nextInt();
-                    student.age = newAge;
+                    student.setAge(newAge);;
                     System.out.println("Age Updated Successfully!" +
-                            " Name: " + student.name +
-                            ", Roll no.: " + student.rollNumber +
+                            " Name: " + student.getName() +
+                            ", Roll no.: " + student.getRoll() +
                             ", Age: " + newAge +
-                            ", Branch: " + student.branch +
-                            ", Phone no.: " + student.phoneNumber +
-                            ", Semester: " + student.semester +
-                            ", Email: " + student.email);
+                            ", Branch: " + student.getBranch() +
+                            ", Phone no.: " + student.getPhone() +
+                            ", Semester: " + student.getSem() +
+                            ", Email: " + student.getEmail());
                     break;
                 case 3:
                     System.out.println("Enter Branch to update: ");
                     scanner.nextLine();
                     String newBranch = scanner.nextLine();
-                    student.branch = newBranch;
+                    student.setBranch(newBranch);;
                     System.out.println("Branch Updated Successfully!" +
-                            " Name: " + student.name +
-                            ", Roll no.: " + student.rollNumber +
-                            ", Age: " + student.age +
+                            " Name: " + student.getName() +
+                            ", Roll no.: " + student.getRoll() +
+                            ", Age: " + student.getAge() +
                             ", Branch: " + newBranch +
-                            ", Phone no.: " + student.phoneNumber +
-                            ", Semester: " + student.semester +
-                            ", Email: " + student.email);
+                            ", Phone no.: " + student.getPhone() +
+                            ", Semester: " + student.getSem() +
+                            ", Email: " + student.getEmail());
                     break;
                 case 4:
                     System.out.println("Enter Semester to Update: ");
                     int newSemester = scanner.nextInt();
                     scanner.nextLine();
-                    student.semester = newSemester;
+                    student.setSem(newSemester);;
                     System.out.println("Semester Updated Successfully!" +
-                            " Name: " + student.name +
-                            ", Roll no.: " + student.rollNumber +
-                            ", Age: " + student.age +
-                            ", Branch: " + student.branch +
-                            ", Phone no.: " + student.phoneNumber +
+                            " Name: " + student.getName() +
+                            ", Roll no.: " + student.getRoll() +
+                            ", Age: " + student.getAge() +
+                            ", Branch: " + student.getBranch() +
+                            ", Phone no.: " + student.getPhone() +
                             ", Semester: " + newSemester +
-                            ", Email: " + student.email);
+                            ", Email: " + student.getEmail());
                     break;
                 case 5:
                     System.out.println("Enter PhoneNo. to Update: ");
                     scanner.nextLine();
                     String newPhone = scanner.nextLine();
-                    student.phoneNumber = newPhone;
+                    student.setPhone(newPhone);
                     System.out.println("Phone no. Updated Successfully!" +
-                            " Name: " + student.name +
-                            ", Roll no.: " + student.rollNumber +
-                            ", Age: " + student.age +
-                            ", Branch: " + student.branch +
+                            " Name: " + student.getName() +
+                            ", Roll no.: " + student.getRoll() +
+                            ", Age: " + student.getAge() +
+                            ", Branch: " + student.getBranch() +
                             ", Phone no.: " + newPhone +
-                            ", Semester: " + student.semester +
-                            ", Email: " + student.email);
+                            ", Semester: " + student.getSem() +
+                            ", Email: " + student.getEmail());
                     break;
                 case 6:
                     System.out.println("Enter Email. to Update: ");
                     scanner.nextLine();
                     String newEmail = scanner.nextLine();
-                    student.email = newEmail;
+                    student.setEmail(newEmail);;
                     System.out.println("Email Updated Successfully!" +
-                            " Name: " + student.name +
-                            ", Roll no.: " + student.rollNumber +
-                            ", Age: " + student.age +
-                            ", Branch: " + student.branch +
-                            ", Phone no.: " + student.phoneNumber +
-                            ", Semester: " + student.semester +
+                            " Name: " + student.getName() +
+                            ", Roll no.: " + student.getRoll() +
+                            ", Age: " + student.getAge() +
+                            ", Branch: " + student.getBranch() +
+                            ", Phone no.: " + student.getPhone() +
+                            ", Semester: " + student.getSem() +
                             ", Email: " + newEmail);
                     break;
 
@@ -178,7 +174,7 @@ public class StudentManager {
 
     public void deleteStudent(int rollNumber) {
         for (int i = 0; i < studentCount; i++) {
-            if (students[i].rollNumber == rollNumber) {
+            if (students[i].getRoll() == rollNumber) {
                 for (int j = i; j < studentCount - 1; j++) {
                     students[j] = students[j + 1];
                 }
