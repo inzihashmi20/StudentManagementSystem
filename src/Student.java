@@ -98,4 +98,16 @@ public class Student {
     public String getEmail(){
         return email;
     }
+
+    @Override
+    public String toString(){
+
+        return "Name: " + name +
+            ", Roll no.: " + rollNumber +
+            ", Age: " + age +
+            ", Branch: " + branch +
+            ", Semester: " + semester +
+            ", Phone no.: " + phoneNumber +
+            ", Email: " + email;
+    }
 }
