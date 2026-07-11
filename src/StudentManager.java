@@ -1,10 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentManager {
     Scanner scanner = new Scanner(System.in);
 
-    Student[] students = new Student[100];
-    int studentCount = 0;
+    ArrayList<Student> students = new ArrayList<>();
 
     public void addStudent() {
         System.out.println("Enter Name: ");
@@ -26,19 +26,18 @@ public class StudentManager {
 
         Student student = new Student(name, rollNumber, age, branch, semester, phoneNumber, email);
 
-        students[studentCount] = student;
-        studentCount++;
+        students.add(student);
         System.out.println("Student added successlly!");
     }
 
     public void displayStudents() {
-        if (studentCount == 0) {
+        if (students.size() == 0) {
             System.out.println("No students found.");
             return;
         }
 
-        for (int i = 0; i < studentCount; i++) {
-            Student student = students[i];
+        for (int i = 0; i < students.size(); i++) {
+            Student student = students.get(i);
 
             System.out.println(student);
             System.out.println("-------------------------");
@@ -48,9 +47,10 @@ public class StudentManager {
     }
 
     public Student searchStudent(int rollNumber) {
-        for (int i = 0; i < studentCount; i++) {
-            if (students[i].getRoll() == rollNumber) {
-                return students[i];
+        for (int i = 0; i < students.size(); i++) {
+            Student student = students.get(i);
+            if (student.getRoll() == rollNumber) {
+                return student;
             }
         }
         return null;
@@ -77,7 +77,7 @@ public class StudentManager {
                     String newName = scanner.nextLine();
                     student.setName(newName);
                     System.out.println("");
-                    System.out.println("Name Updated Successfully!" );
+                    System.out.println("Name Updated Successfully!");
                     System.out.println(student);
                     break;
 
@@ -133,18 +133,26 @@ public class StudentManager {
     }
 
     public void deleteStudent(int rollNumber) {
-        for (int i = 0; i < studentCount; i++) {
-            if (students[i].getRoll() == rollNumber) {
-                for (int j = i; j < studentCount - 1; j++) {
-                    students[j] = students[j + 1];
-                }
-                studentCount--;
-                students[studentCount] = null;
-                System.out.println("Student deleted successfully!");
-                return;
 
+        int studentIndex = searchStudentIndex(rollNumber);
+
+        if (studentIndex != -1) {
+            students.remove(studentIndex);
+            System.out.println("Student deleted successfully!");
+        } else {
+            System.out.println("Student not found. ");
+        }
+
+    }
+
+    public int searchStudentIndex(int rollNumber) {
+
+        for (int i = 0; i < students.size(); i++) {
+            Student student = students.get(i);
+            if (student.getRoll() == rollNumber) {
+                return i;
             }
         }
-        System.out.println("Student not found.");
+        return -1;
     }
 }

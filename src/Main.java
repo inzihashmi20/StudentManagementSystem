@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -17,8 +18,16 @@ public class Main {
             System.out.println("6. Exit ");
             System.out.println();
             System.out.println("=========================================================");
-            System.out.print("Enter Your Choice: ");
-            int choice = scanner.nextInt();
+            int choice;
+
+            try {
+                System.out.print("Enter Your Choice: ");
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number between 1 and 6.");
+                scanner.nextLine();
+                continue;
+            }
 
             switch (choice) {
                 case 1:
