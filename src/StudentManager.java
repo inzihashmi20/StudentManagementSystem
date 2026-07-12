@@ -7,10 +7,18 @@ public class StudentManager {
     ArrayList<Student> students = new ArrayList<>();
 
     public void addStudent() {
-        System.out.println("Enter Name: ");
-        String name = scanner.nextLine();
+        
+        
         System.out.println("Enter Roll No.: ");
         int rollNumber = scanner.nextInt();
+        scanner.nextLine();
+        if (searchStudent(rollNumber) != null) {
+            System.out.println("Roll number already exists! ");
+            return;
+        }
+        
+        System.out.println("Enter Name: ");
+        String name = scanner.nextLine();
         System.out.print("Enter Age: ");
         int age = scanner.nextInt();
         scanner.nextLine();
@@ -35,10 +43,7 @@ public class StudentManager {
             System.out.println("No students found.");
             return;
         }
-
-        for (int i = 0; i < students.size(); i++) {
-            Student student = students.get(i);
-
+        for (Student student : students) {
             System.out.println(student);
             System.out.println("-------------------------");
             System.out.println();
@@ -47,8 +52,7 @@ public class StudentManager {
     }
 
     public Student searchStudent(int rollNumber) {
-        for (int i = 0; i < students.size(); i++) {
-            Student student = students.get(i);
+        for (Student student : students) {
             if (student.getRoll() == rollNumber) {
                 return student;
             }
