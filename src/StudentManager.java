@@ -7,18 +7,17 @@ public class StudentManager {
     ArrayList<Student> students = new ArrayList<>();
 
     public void addStudent() {
-        
-        
-        System.out.println("Enter Roll No.: ");
-        int rollNumber = scanner.nextInt();
+
+        // System.out.println("Enter Roll No.: ");
+        int rollNumber = getValidRollNumber();
         scanner.nextLine();
-        if (searchStudent(rollNumber) != null) {
-            System.out.println("Roll number already exists! ");
-            return;
-        }
-        
-        System.out.println("Enter Name: ");
-        String name = scanner.nextLine();
+        // if (searchStudent(rollNumber) != null) {
+        // System.out.println("Roll number already exists! ");
+        // return;
+        // }
+
+        // System.out.println("Enter Name: ");
+        String name = getValidName();
         System.out.print("Enter Age: ");
         int age = scanner.nextInt();
         scanner.nextLine();
@@ -158,5 +157,66 @@ public class StudentManager {
             }
         }
         return -1;
+    }
+
+    private int getValidRollNumber() {
+
+        int rollNumber;
+        // scanner.nextLine();
+
+        do {
+            System.out.println("Enter Roll No.: ");
+            rollNumber = scanner.nextInt();
+            if (rollNumber < 1) {
+                System.out.println("Enter a valid RollNumber: ");
+                continue;
+
+            }
+
+            // int rollNumber = scanner.nextInt();
+            if (searchStudent(rollNumber) != null) {
+                System.out.println("Roll number already exists! ");
+                // return;
+                continue;
+            }
+
+            // return rollNumber;
+
+            return rollNumber;
+
+        } while (true);
+
+    }
+
+    private String getValidName(){
+        String name;
+        do {
+            boolean isValid = true;
+            System.out.println("Enter name: ");
+            name = scanner.nextLine();
+            
+            name = name.trim();
+            if (name.isBlank()) {
+                System.out.println("Name can't be blank ");
+                continue;
+            }
+            for (int i = 0; i < name.length(); i++) {
+                char ch = name.charAt(i);
+                
+                if (!Character.isWhitespace(ch) && !Character.isLetter(ch)) {
+                    System.out.println("Invalid name, try again: ");
+                    isValid = false;
+                    break;
+                }
+            }
+            if (isValid ) {
+                return name;
+            }
+
+            
+        } while (true);
+
+
+        
     }
 }
