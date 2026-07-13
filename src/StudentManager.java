@@ -8,23 +8,13 @@ public class StudentManager {
 
     public void addStudent() {
 
-        // System.out.println("Enter Roll No.: ");
         int rollNumber = getValidRollNumber();
         scanner.nextLine();
-        // if (searchStudent(rollNumber) != null) {
-        // System.out.println("Roll number already exists! ");
-        // return;
-        // }
-
-        // System.out.println("Enter Name: ");
         String name = getValidName();
-        System.out.print("Enter Age: ");
-        int age = scanner.nextInt();
+        int age = getValidAge();
         scanner.nextLine();
-        System.out.println("Enter Branch: ");
-        String branch = scanner.nextLine();
-        System.out.println("Enter Semester: ");
-        int semester = scanner.nextInt();
+        String branch = selectBranch();
+        int semester = getValidSem();
         scanner.nextLine();
         System.out.println("Enter Phone no.: ");
         String phoneNumber = scanner.nextLine();
@@ -188,13 +178,13 @@ public class StudentManager {
 
     }
 
-    private String getValidName(){
+    private String getValidName() {
         String name;
         do {
             boolean isValid = true;
             System.out.println("Enter name: ");
             name = scanner.nextLine();
-            
+
             name = name.trim();
             if (name.isBlank()) {
                 System.out.println("Name can't be blank ");
@@ -202,21 +192,96 @@ public class StudentManager {
             }
             for (int i = 0; i < name.length(); i++) {
                 char ch = name.charAt(i);
-                
+
                 if (!Character.isWhitespace(ch) && !Character.isLetter(ch)) {
                     System.out.println("Invalid name, try again: ");
                     isValid = false;
                     break;
                 }
             }
-            if (isValid ) {
+            if (isValid) {
                 return name;
             }
 
-            
         } while (true);
 
+    }
 
+    private int getValidAge() {
+        int age;
+        do {
+            System.out.println("Enter age: ");
+            age = scanner.nextInt();
+
+            if (age < 16 || age > 60) {
+                System.out.println("Enter a valid age: ");
+                continue;
+            }
+
+            return age;
+
+        } while (true);
+    }
+
+    private int getValidSem() {
+        int sem;
+        do {
+            System.out.println("Enter Semester: ");
+            sem = scanner.nextInt();
+
+            if (sem < 1 || sem > 8) {
+                System.out.println("Semester must be between 1 and 8 : ");
+                continue;
+            }
+
+            return sem;
+
+        } while (true);
+    }
+
+    private String selectBranch() {
         
+        while (true) {
+
+            System.out.println("Select Branch: ");
+            System.out.println("1. B.Tech");
+            System.out.println("2. BCA");
+            System.out.println("3. B.Sc");
+            System.out.println("4. B.Com");
+            System.out.println("5. BA");
+            System.out.println("6. MCA");
+            System.out.println("7. M.Tech");
+
+            int choice= scanner.nextInt();;
+            
+            switch (choice) {
+                case 1:
+                    System.out.println("Branch: B.Tech ");
+                    return "B.Tech";
+                case 2:
+                    System.out.println("Branch: BCA ");
+                    return "BCA";
+                case 3:
+                    System.out.println("Branch: B.Sc ");
+                    return "B.Sc";
+                case 4:
+                    System.out.println("Branch: B.Com ");
+                    return "B.Com";
+                case 5:
+                    System.out.println("Branch: BA ");
+                    return "BA";
+                case 6:
+                    System.out.println("Branch: MCA ");
+                    return "MCA";
+                case 7:
+                    System.out.println("Branch: M.Tech ");
+                    return "M.Tech";
+
+                default:
+                    System.out.println("Invalid choice,Please select between 1 and 7.");
+                    continue;
+            }
+
+        }
     }
 }
